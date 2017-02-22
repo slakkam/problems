@@ -36,9 +36,11 @@ for a0 in range(q):
     n,m,x,y = input().strip().split(' ')
     n,m,x,y = [int(n),int(m),int(x),int(y)]
     edges = []
+    
     for a1 in range(m):
         city_1,city_2 = input().strip().split(' ')
         edges.append((int(city_1),int(city_2)))
+    
     if x <= y:
         print(n*x)
     else:
@@ -47,13 +49,17 @@ for a0 in range(q):
             ds.makeset(i)
         for i in range(0,m):
             ds.union(edges[i][0],edges[i][1])
+        
         rep = []
         for i in range(1,n+1):
             rep.append(ds.findset(ds.dic[i]).data)
+        
         repdic = {i:0 for i in rep}
         for i in rep:
             repdic[i] = repdic[i] + 1
+        
         mincost = 0
         for i in repdic.keys():
             mincost = mincost +(repdic[i]-1)*y + x
+        
         print(mincost) 
